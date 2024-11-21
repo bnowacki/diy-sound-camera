@@ -2,7 +2,7 @@ from moviepy.editor import VideoFileClip, CompositeVideoClip
 
 print("=== Merging videos ===")
 
-BACKGROUND_VIDEO = "./input_data/sawtooth-short_10_28.mp4"
+BACKGROUND_VIDEO = "./input_data/video.mp4"
 OVERLAY_VIDEO = "./output/frames.mp4"
 
 # Load the background video
