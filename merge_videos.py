@@ -1,12 +1,15 @@
-from moviepy.editor import VideoFileClip, CompositeVideoClip
+from moviepy.editor import VideoFileClip, CompositeVideoClip, vfx
 
 print("=== Merging videos ===")
 
-BACKGROUND_VIDEO = "./input_data/video.mp4"
-OVERLAY_VIDEO = "./output/frames.mp4"
+BACKGROUND_VIDEO = "./output/frames.mp4"
+OVERLAY_VIDEO = "./input_data/video.mp4"
 
 # Load the background video
 background = VideoFileClip(BACKGROUND_VIDEO)
+
+# Flip the background video horizontally
+background = background.fx(vfx.mirror_x)
 
 # Load the overlay video
 overlay = VideoFileClip(OVERLAY_VIDEO).set_opacity(0.5)  # Resize overlay if needed

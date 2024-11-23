@@ -23,6 +23,8 @@ mg.mpos_tot = np.array(
         for i in np.linspace(0.0, 1.0, 8, False)
     ],
 ).T
+# Shift positions counter-clockwise by one step
+mg.mpos_tot = np.roll(mg.mpos_tot, shift=1, axis=1)
 
 # Load sound file
 
@@ -39,7 +41,7 @@ print("Sample freq: ", ts.sample_freq)
 print("Length in seconds: ", ts.numsamples / ts.sample_freq)
 
 # we create a RectGrid object, which provides possible source positions in a regular, two-dimensional grid with rectangular shape:
-rg = ac.RectGrid(x_min=-5, x_max=5, y_min=-5, y_max=5, z=1, increment=0.5)
+rg = ac.RectGrid(x_min=-0.4, x_max=0.4, y_min=-0.4, y_max=0.4, z=0.4, increment=0.005)
 print("Rect size: ", rg.size)
 
 # The sound propagation model (including the source model and transfer path) is contained in a SteeringVector object,
@@ -54,8 +56,7 @@ frames_count = int(ts.numsamples / ts.sample_freq * FPS)
 print("Frames to be generated: ", frames_count)
 
 
-# maybe only keep 270hz to test sawtooth
-fi = ac.FiltFiltOctave(source=ts, band=144, fraction="Third octave")
+fi = ac.FiltFiltOctave(source=ts, band=1000, fraction="Third octave")
 bt = ac.BeamformerTimeSq(source=fi, steer=st, r_diag=True)
 avgt = ac.Average(source=bt, naverage=int(ts.sample_freq / FPS))
 cacht = ac.Cache(source=avgt)  # cache to prevent recalculation
@@ -89,7 +90,8 @@ def update(frame):
     ax.imshow(
         ac.L_p(np.transpose(res)),
         vmax=mx,
-        vmin=mx - 10,
+        vmin=mx - 3,
+        cmap="turbo",
         interpolation="nearest",
         extent=rg.extend(),
         origin="lower",
