@@ -42,6 +42,10 @@ print("Length in seconds: ", ts.numsamples / ts.sample_freq)
 
 # we create a RectGrid object, which provides possible source positions in a regular, two-dimensional grid with rectangular shape:
 rg = ac.RectGrid(x_min=-0.4, x_max=0.4, y_min=-0.4, y_max=0.4, z=0.4, increment=0.005)
+
+# Good parameters for phone looking up and noise from phone
+# rg = ac.RectGrid(x_min=-0.4, x_max=0.4, y_min=-0.4, y_max=0.4, z=0.4, increment=0.005)
+
 print("Rect size: ", rg.size)
 
 # The sound propagation model (including the source model and transfer path) is contained in a SteeringVector object,
@@ -56,7 +60,7 @@ frames_count = int(ts.numsamples / ts.sample_freq * FPS)
 print("Frames to be generated: ", frames_count)
 
 
-fi = ac.FiltFiltOctave(source=ts, band=1000, fraction="Third octave")
+fi = ac.FiltFiltOctave(source=ts, band=1130, fraction="Third octave")
 bt = ac.BeamformerTimeSq(source=fi, steer=st, r_diag=True)
 avgt = ac.Average(source=bt, naverage=int(ts.sample_freq / FPS))
 cacht = ac.Cache(source=avgt)  # cache to prevent recalculation
