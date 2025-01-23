@@ -73,8 +73,11 @@ def plot_drone_positions(centers_image, centers_sound):
 
     for i in range(1, len(centers_image)):
         plt.plot([image_x[i-1], image_x[i]], [image_y[i-1], image_y[i]], color=image_colors[i], lw=2)
-    for i in range(1, len(centers_sound)):
+        
         plt.plot([sound_x[i-1], sound_x[i]], [sound_y[i-1], sound_y[i]], color=sound_colors[i], lw=2)
+
+
+    plt.gca().invert_yaxis()
 
     plt.xlabel("X Position (px)")
     plt.ylabel("Y Position (px)")
@@ -85,6 +88,7 @@ def plot_drone_positions(centers_image, centers_sound):
     os.makedirs("./output/images", exist_ok=True)
     plt.savefig("./output/images/drone_positions.png")
     plt.close()
+
 
 def save_statistics(stats):
     os.makedirs("./output/measurements", exist_ok=True)
