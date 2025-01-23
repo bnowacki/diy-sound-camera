@@ -1,3 +1,7 @@
 cache
 output/*
 input_data/*
+
+ai_detection/output/ceiling*
+ai_detection/output/wall*
+ai_detection/videos/*

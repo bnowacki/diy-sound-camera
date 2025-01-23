@@ -1,0 +1,14 @@
+Statistics for center differences:
+
+x_distance_mean: 33.09731543624161
+x_distance_std: 21.201666536714917
+x_distance_min: 0
+x_distance_max: 109
+y_distance_mean: 25.47986577181208
+y_distance_std: 21.778505134375568
+y_distance_min: 0
+y_distance_max: 250
+distance_mean: 45.09958124020619
+distance_std: 25.189235212998426
+distance_min: 0.0
+distance_max: 259.61509971494337
